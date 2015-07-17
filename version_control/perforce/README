@@ -1,0 +1,11 @@
+P4 Commands
+-----------
+
+Merge up to a branch with a branch map:
+
+p4 integrate -b <branch map name>
+p4 resolve -as
+p4 resolve -am   --- This auto merges files without confilcts
+
+
+p4 integrate -r -b <branch map> --- back up to parent branch.
