@@ -8,9 +8,11 @@ I would recommend reading up on the technology first.
 
 
 ## What is going on?
-Section is meant to be notes on waht to look into near future.
+Section is meant to be notes on what to look into near future.
 * [Open Container Project](http://www.opencontainers.org)
 * [Windows Containers](http://blogs.technet.com/b/server-cloud/archive/2015/04/08/microsoft-announces-new-container-technologies-for-the-next-generation-cloud.aspx)
+* [Cloud Native Foundation](http://www.linuxfoundation.org/news-media/announcements/2015/07/new-cloud-native-computing-foundation-drive-alignment-among)
+
 
 ## Breaking it down
 
@@ -26,6 +28,7 @@ The premise of the container OS is to have the lightest host OS footprint so you
 * [RancherOS](https://github.com/rancher/os)
 * [VMWare Photon](https://github.com/vmware/photon)
 
+
 ## container engine (runtime)
 
 The tool that actually runs the containers is referred to as the container engine. Today there are many flavors of an engine but the most popularized is Docker.
@@ -34,7 +37,7 @@ Docker donated to the Open Container Project the container engine from Docker an
 
  The following are the current container engines.
 
-* Docker
+* [Docker](https://www.docker.com/)
 * [rkt](https://github.com/coreos/rkt)
 * [appc](https://github.com/appc/spec)
 * [runc](https://github.com/opencontainers/runc)
@@ -42,15 +45,21 @@ Docker donated to the Open Container Project the container engine from Docker an
 ## images
 Images are what containers are made from. You build ship and run the images for the container engine. The container engine then runs and manages that now running container.
 
+## networking
+To be filled
 
-# orchestration
+## storage
+To be filled
+
+## orchestration
+Once you start using containers for more than just dev/test it will become necessary to have orchestration.
 
 * [Kubernetes](http://kubernetes.io)
 
 
 # Blogs and Slidedecks
 * [Kubernetes explains container design patterns](http://blog.kubernetes.io/2015/06/the-distributed-system-toolkit-patterns.html)
-*
+
 
 ## Dockercon15
 * Good overall talk. MUST WATCH [Adrien Cockcraft](https://www.youtube.com/watch?v=zDuTIZBh5_Q&list=PLkA60AVN3hh94tm0_6_rGxamkuHOLr30l&index=12)
