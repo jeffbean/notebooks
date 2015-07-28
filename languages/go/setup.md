@@ -4,7 +4,7 @@ download https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz
 untar into the /usr/local dir
 `tar -C $HOME/.local/ -xzf go1.4.2.linux-amd64.tar.gz`
 
-Setup ENV vars in `~/.zshrc`
+Setup ENV vars in `~/.zshrc` or whatever your shell uses.
 ```bash
 export GOROOT=$HOME/.local/go
 PATH=$PATH:$GOROOT/bin
@@ -22,10 +22,12 @@ func main() {
     fmt.Printf("hello, world\n")
 }
 ```
+
 Then run it with the go tool:
 
 ```
 $ go run hello.go
 hello, world
 ```
+
 If you see the "hello, world" message then your Go installation is working.

@@ -8,7 +8,7 @@ Started an organic note sheet to possibly help  anyone interested in the contain
 ## Interesting Tech News
 * New Open [Cloud Native Foundation](http://www.linuxfoundation.org/news-media/announcements/2015/07/new-cloud-native-computing-foundation-drive-alignment-among)
 * [Kubernetes](http://kubernetes.io/) 1.0 Launch
-    * [You-Tube videos](https://www.youtube.com/playlist?list=PL69nYSiGNLP0Ljwa9J98xUd6UlM604Y-l) of the launch. 
+    * [You-Tube videos](https://www.youtube.com/playlist?list=PL69nYSiGNLP0Ljwa9J98xUd6UlM604Y-l) of the launch.
 * Greg Knieriemen from HDS talks about Kubernetes and Hitchi's UCP on The Register [podcast](http://www.theregister.co.uk/2015/07/22/speaking_in_tech_episode_169/).
 
 
@@ -20,6 +20,7 @@ After learning that JSON is heavy when thinking at scale, found out about Protoc
 Need to learn and use GO for all new scripts/tools from here on out.
 * [Go Tour](https://tour.golang.org/)
 * [Go Cheat sheet](http://learnxinyminutes.com/docs/go/)
+* [Jenkins Enterprise](https://www.cloudbees.com/products/cloudbees-jenkins-platform)
 
 
 ## Meetups in Seattle

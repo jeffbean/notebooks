@@ -49,7 +49,15 @@ Images are what containers are made from. You build ship and run the images for 
 To be filled
 
 ## storage
-To be filled
+To maintain persistence there are two main ways to do this.
+
+One is to configure a persistent data volume or container. This is a common pattern and is illustrated and documented by Docker [here](https://docs.docker.com/userguide/dockervolumes/).
+
+The second way is to rewrite or, more commonly, start fresh writing the software to a persistence layer outside of the container system. Things like S3 endpoints or more commonly now “etcd” or Cassandra DB’s that are clustered and maintain state within a cluster, allowing you to persist within a cluster of nodes.
+
+Kubernetes has a concept of configuring persistent storage. You first declare what volumes are available, then each pod you create can access these volumes. A good doc for this can be found [here](http://kubernetes.io/v1.0/examples/mysql-wordpress-pd/README.html ).
+
+
 
 ## orchestration
 Once you start using containers for more than just dev/test it will become necessary to have orchestration.
