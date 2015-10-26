@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: whistler
+  labels:
+    name: whistler
+spec:
+  containers:
+  - name: whistler
+    image: rdocker.mcp.com:5000/whistler-develop:latest
+    ports:
+    - containerPort: 8090
+    volumeMounts:
+    - name: whistler-data
+      mountPath: /data
+  - name: whistler-cinder-cisco
+    image: rdocker.mcp.com:5000/whistlercinder-develop:latest
+    env:
+    - name: DRIVER
+      value: CISCO
+    ports:
+    - containerPort: 8000
+    volumeMounts:
+    - name: whistler-cinder-cisco-data
+      mountPath: /data
+  - name: whistler-cinder-brocade
+    image: rdocker.mcp.com:5000/whistlercinder-develop:latest
+    env:
+    - name: DRIVER
+      value: BROCADE
+    ports:
+    - containerPort: 8000
+    volumeMounts:
+    - name: whistler-cinder-brocade-data
+      mountPath: /data
+  volumes:
+    - name: whistler-data
+      emptyDir: {}
+    - name: whistler-cinder-cisco-data
+      emptyDir: {}
+    - name: whistler-cinder-brocade-data
+      emptyDir: {}

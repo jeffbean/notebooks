@@ -1,3 +1,11 @@
+# vCenter
+## 6.0 silent install
+
+
+
+Run the installer without isntalling and export the json for the silent installer.
+`VMware-vCenter-Server.exe EXPORT_SETTINGS_DIR=C:\\settings-out.json PREINSTALLCHECK=1`
+
 ESX
 ===
 

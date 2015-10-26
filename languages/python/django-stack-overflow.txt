@@ -1,0 +1,85 @@
+Django ManyToManyField which specifies an intermediary model. with a OneToOneField
+
+
+
+
+<!-- language: lang-python -->
+I have a setup with models that I have not come across in my research. Its a model with a through relation table that is a OneToOne.
+
+The issue is the Admin interface works fine when setting the reservations in the form.
+
+     class AgentForm(forms.ModelForm):
+         class Meta:
+             model = Agent
+
+But creating a Basic ModelForm leads to the error:
+
+    AttributeError: Cannot set values on a ManyToManyField which specifies an intermediary model.  Use podman.BladeReservation's Manager instead.
+
+
+
+----------
+**models.py**
+
+    class Node(models.Model):
+        name = models.CharField(_('Name'), help_text=_('A name for the node.'), max_length=128)
+        hostname = models.CharField(
+            verbose_name=_('Hostname'),
+            max_length=255,
+            blank=True, null=True
+        )
+        class Meta:
+            abstract = True
+            ordering = ['name', 'hostname']
+
+    class Blade(Node):
+        serial_number = models.CharField(_('Serial Number'), max_length=255, unique=True)
+        uuid = models.CharField(
+            verbose_name=_('UUID'),
+            help_text=_('Node UUID'),
+            max_length=50,
+            null=True, blank=True
+        )
+        ...
+
+    class Agent(models.Model):
+        name = models.CharField(_('Name'), max_length=128, help_text=_('This name is a friendly handle for humans.'))
+        slug = models.SlugField(
+            verbose_name=_(u'Slug'),
+            help_text=_('Uri identifier. This name is the lookup key for Automation'),
+            max_length=100,
+            unique=True
+        )
+        ...
+
+        blades = models.ManyToManyField('podman.Blade', related_name='blades', through='podman.BladeReservation')
+        ...
+
+    class BladeReservation(models.Model):
+        blade = models.OneToOneField('podman.Blade')
+        agent = models.ForeignKey('podman.Agent')
+        reserved_until = models.DateTimeField(null=True, blank=True)
+
+----------
+**admin.py**
+
+    class AgentAdmin(CompareNoDuplicates):
+        prepopulated_fields = {'slug': ('name',)}
+        inlines = [BladeReservationInline]
+        filter_horizontal = ('blades',)
+        list_display_links = ('__str__',)
+        preserve_filters = True
+
+    class BladeReservationInline(admin.TabularInline):
+        model = BladeReservation
+
+        def get_formset(self, request, obj=None, **kwargs):
+            kwargs['formfield_callback'] = partial(self.formfield_for_dbfield, request=request, obj=obj)
+            return super(BladeReservationInline, self).get_formset(request, obj, **kwargs)
+
+        def formfield_for_dbfield(self, db_field, **kwargs):
+            agent = kwargs.pop('obj', None)
+            formfield = super(BladeReservationInline, self).formfield_for_dbfield(db_field, **kwargs)
+            if db_field.name == "blade" and agent:
+                formfield.queryset = formfield.queryset.filter(chassis__pod__in=[p for p in agent.container.pods.all()])
+            return formfield
